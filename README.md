@@ -13,7 +13,9 @@
 We were succesfully able to:
 
 
-
+## Sources:
+- https://basketball.realgm.com/nba/stats
+- https://basketball.realgm.com/nba/team-stats
 
 ## Team Members:
 - Zhao, Jessica
