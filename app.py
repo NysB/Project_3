@@ -40,20 +40,8 @@ app = Flask(__name__)
 @app.route("/")
 def home():
         
-    session = Session(engine)
+    return "Welcome to the NBA Stats API!"
     
-    player_names = session.query(Player_info_table.Player).all()
-    session.close()
-
-    results = []
-    for Player in player_names :
-        player_name_dict = {}
-        player_name_dict["Player"] = Player
-        results.append(player_name_dict)
-
-    return render_template('index.html', data=results)
-    
-
 
 # teams route
 @app.route("/teams")
