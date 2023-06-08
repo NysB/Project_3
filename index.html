@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
 </head>
 <body>
-    <h1>Titanic Passengers</h1>
+    <h1>NBA Players</h1>
     <p>Change the dropdown below to update the plots</p>
     <select id="selDataset">
-        <option value="Survived">Survived</option>
-        <option value="Died">Died</option>
+        <option value="Survived">XX</option>
+        <option value="Died">XX</option>
     </select>
 
     <div id="plot"></div>
@@ -22,37 +22,29 @@
     <h4>Data Sources:</h4>
         <ul>
             <li>
-                <p>Titanic Database: To Do</p>
+                <p>https://basketball.realgm.com/nba/stats</p>
             </li>
             <li>
-                <p>1</p>
+                <p>https://basketball.realgm.com/nba/team-stats</p>
             </li>
         </ul>
 
-    <h4>Accessing the Titanic Passenger API</h4>
+    <h4>Accessing the NBA Stats API</h4>
     <p>The following endpoints are available to access data:</p>
     <ul>
         <li>
-            <a href="/api/v1.0/names">/api/v1.0/names</a>
-            <p>Access a list of all passenger names</p>
+            <a href="/api/teams">/api/teams</a>
+            <p>Return a list of all NBA Teams</p>
         </li>
         <li>
-            <a href="/api/v1.0/passengers">/api/v1.0/passengers</a>
-            <p>Return a list of passenger data including the name, age, and sex of each passenger</p>
+            <a href="/api/player_info">/api/player_info</a>
+            <p>Return a list of player data</p>
         </li>
         <li>
-            <a href="/api/v1.0/passengerbyname/<name>">/api/v1.0/passengerbyname/&lt;name&gt;</a>
-            <p>Search for passengers by name. For example:</p>
-            <a href="/api/v1.0/passengerbyname/Behr,%20Mr%20Karl%20Howell">/api/v1.0/passengerbyname/Behr,%20Mr%20Karl%20Howell</a>
+            <a href="/api/player_scores">/api/player_scores</a>
+            <p>Return a list of player data</p>
         </li>
     </ul>
     
-    <h4>Source Code:</h4>
-    <a href="https://github.com/paloblanco/flask-demo-fullstack">https://github.com/paloblanco/flask-demo-fullstack</a>
- 
-    <h4>Contact:</h4>
-    <a href="https://github.com/paloblanco">Rocco Panella</a>
-
-    <script src="{{ url_for('static', filename='js/plots.js') }}"></script>
 </body>
 </html>
