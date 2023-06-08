@@ -40,8 +40,9 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     # below will need to be replaced by html
-    return "Welcome to the NBA Stats API!"
-    # return render_template('index.html')
+    # return "Welcome to the NBA Stats API!: '/teams' + '/player_scores' + '/player_info'"
+    
+    return render_template('index.html')
 
 
 # teams route
