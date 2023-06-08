@@ -39,10 +39,13 @@ app = Flask(__name__)
 #################################################
 @app.route("/")
 def home():
-    # below will need to be replaced by html
-    # return "Welcome to the NBA Stats API!: '/teams' + '/player_scores' + '/player_info'"
+        
+    session = Session(engine)
     
-    return render_template('index.html')
+    results = session.execute('SELECT DISTINCT Player FROM Player_info_table')
+    data = [row[0] for row in results]
+    session.close()
+    return render_template('index.html', data=data)
 
 
 # teams route

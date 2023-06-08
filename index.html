@@ -12,12 +12,20 @@
 <body>
     <h1>NBA Players</h1>
     <p>Change the dropdown below to update the plots</p>
-    <select id="selDataset">
-        <option value="player1">XX</option>
-        <option value="player2">XX</option>
+    <select id="myDropdown">
+        {% for value in data %}
+                <option value="{{ value }}">{{ value }}</option>
+            {% endfor %}
     </select>
+    
+    <script>
+        var dropdown = document.getElementById('myDropdown');
+        dropdown.addEventListener('change', function () {
+            var selectedValue = dropdown.value;
+            console.log('Selected value:', selectedValue);
+            });
+        </script>
 
-    <div id="plot"></div>
 
     <h4>Data Sources:</h4>
         <ul>
@@ -42,7 +50,7 @@
         </li>
         <li>
             <a href="/api/player_scores">/api/player_scores</a>
-            <p>Return a list of player data</p>
+            <p>Return a list of player scores across a number of years</p>
         </li>
     </ul>
     
