@@ -1,8 +1,8 @@
 // Grab data
-let apiTitanic = "/api/v1.0/passengersbyclass";
+let playerInfoApi = "http://localhost:5000/player_info";
 
 function init() {
-  d3.json(apiTitanic).then(function(data) {
+  d3.json(playerInfoApi).then(function(data) {
       let filter = "Survived"
       data = data['Survived']
       let dataPlot = [{

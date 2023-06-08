@@ -14,17 +14,11 @@
     <p>Change the dropdown below to update the plots</p>
     <select id="myDropdown">
         {% for value in data %}
-                <option value="{{ value }}">{{ value }}</option>
-            {% endfor %}
+          <option>{{ value }}</option>
+        {% endfor %}
     </select>
     
-    <script>
-        var dropdown = document.getElementById('myDropdown');
-        dropdown.addEventListener('change', function () {
-            var selectedValue = dropdown.value;
-            console.log('Selected value:', selectedValue);
-            });
-        </script>
+    <script src="plots.js"></script>
 
 
     <h4>Data Sources:</h4>
@@ -41,15 +35,15 @@
     <p>The following endpoints are available to access data:</p>
     <ul>
         <li>
-            <a href="/api/teams">/api/teams</a>
+            <a href="http://localhost:5000/teams">/api/teams</a>
             <p>Return a list of all NBA Teams</p>
         </li>
         <li>
-            <a href="/api/player_info">/api/player_info</a>
+            <a href="http://localhost:5000/player_info">/api/player_info</a>
             <p>Return a list of player data</p>
         </li>
         <li>
-            <a href="/api/player_scores">/api/player_scores</a>
+            <a href="http://localhost:5000/player_scores">/api/player_scores</a>
             <p>Return a list of player scores across a number of years</p>
         </li>
     </ul>
