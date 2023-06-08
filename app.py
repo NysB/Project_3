@@ -42,10 +42,17 @@ def home():
         
     session = Session(engine)
     
-    results = session.execute('SELECT DISTINCT Player FROM Player_info_table')
-    data = [row[0] for row in results]
+    player_names = session.query(Player_info_table.Player).all()
     session.close()
-    return render_template('index.html', data=data)
+
+    results = []
+    for Player in player_names :
+        player_name_dict = {}
+        player_name_dict["Player"] = Player
+        results.append(player_name_dict)
+
+    return render_template('index.html', data=results)
+    
 
 
 # teams route

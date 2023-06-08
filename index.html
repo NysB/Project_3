@@ -14,8 +14,8 @@
     <p>Change the dropdown below to update the plots</p>
     <select id="myDropdown">
         {% for value in data %}
-                <option value="{{ value }}">{{ value }}</option>
-            {% endfor %}
+          <option>{{ value }}</option>
+        {% endfor %}
     </select>
     
     <script>
