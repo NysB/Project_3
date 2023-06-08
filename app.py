@@ -20,7 +20,7 @@ base = automap_base()
 base.prepare(engine, reflect=True)
 
 # Save references to each table
-# Team_table= base.classes.Team_table
+Team_table= base.classes.Team_table
 Player_score_table = base.classes.Player_score_table
 Player_info_table = base.classes.Player_info_table
 
@@ -45,19 +45,19 @@ def home():
 
 
 # teams route
-# @app.route("/teams")
-# def get_teams():
-#     # Query the team table and return the results as JSON
-#     teams = session.query(Team_table.Team, Team_table.PPG, Team_table.APG, Team_table.RPG).all()
-#     results = []
-#     for team in teams:
-#         results.append({
-#             "team": team.Team,
-#             "PPG": team.PPG,
-#             "APG": team.APG,
-#             "RPG": team.RPG
-#         })
-#     return jsonify(results)
+@app.route("/teams")
+def get_teams():
+    # Query the team table and return the results as JSON
+    teams = session.query(Team_table.Team, Team_table.PPG, Team_table.APG, Team_table.RPG).all()
+    results = []
+    for team in teams:
+        results.append({
+            "team": team.Team,
+            "PPG": team.PPG,
+            "APG": team.APG,
+            "RPG": team.RPG
+        })
+    return jsonify(results)
 
 #  player scores route
 @app.route("/player_scores")
