@@ -8,6 +8,7 @@ from sqlalchemy import create_engine, func
 import pandas as pd
 
 from flask import Flask, jsonify, render_template
+# from flask_cors import CORS
 
 
 #################################################
@@ -31,7 +32,7 @@ Player_info_table = Base.classes.Player_info_table
 # Flask Setup
 #################################################
 app = Flask(__name__)
-
+# CORS(app)
 
 
 #################################################
