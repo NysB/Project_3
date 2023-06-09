@@ -70,16 +70,20 @@ def get_player_scores():
     # Query the Player_score_table and return the results as JSON
     
     session = Session(engine)
-    player_scores = session.query(Player_score_table.Player, Player_score_table.Year, Player_score_table.GP, Player_score_table.GS).all()
+    player_scores = session.query(Player_score_table.Player, Player_score_table.Year, Player_score_table.GP, Player_score_table.GS, Player_score_table.AST, Player_score_table.PTS, Player_score_table.TRB).all()
     session.close()
 
     results = []
-    for Player, Year, GP, GS in player_scores:
+    for Player, Year, GP, GS, AST,PTS, TRB in player_scores:
         player_score_dict = {}
         player_score_dict["Player"] = Player
         player_score_dict["Year"] = Year
         player_score_dict["GP"] = GP
         player_score_dict["GS"] = GS
+        player_score_dict["AST"]= AST
+        player_score_dict["PTS"]= PTS
+        player_score_dict["TRB"]= TRB
+
         results.append(player_score_dict)
     
     return jsonify(results)
