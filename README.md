@@ -1,11 +1,11 @@
-<h1 align="center">Project 3: NBA DAshboard  </h1>
+<h1 align="center">Project 3: NBA Dashboard  </h1>
 <p align="center">
 
 
 
 
 ## Introduction
-A collaborative project to develop a full-stack data visualization web application, using Python Flask-powered API, HTML/CSS, JavaScript, and SQLite database, which will allow users to interactively explore a dataset.
+A collaborative project to develop a full-stack data visualization web application, using `Python Flask-powered API`, `HTML/CSS`, `JavaScript`, and `SQLite` database, which will allow users to interactively explore a dataset.
 
 
 ## How to Run
