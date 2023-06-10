@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
 </head>
 <body>
-    <h1>NBA Players</h1>
+    <h1>NBA Teams</h1>
     <p>Change the dropdown below to update the plots</p>
 
-    <select id="selDataset">
+    <select id="selDataset"> 
+        <option value ="Teams">Team</option>
     </select>
     
-    <script src="plots.js"></script>
+    <script src="{{ url_for('static', filename='js/plots.js')}}"></script>
 
 
     <h4>Data Sources:</h4>

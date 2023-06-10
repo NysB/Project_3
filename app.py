@@ -7,8 +7,8 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 import pandas as pd
 
-from flask import Flask, jsonify
-# from flask_cors import CORS
+from flask import Flask, jsonify, render_template
+
 
 
 #################################################
@@ -40,7 +40,9 @@ app = Flask(__name__)
 #################################################
 @app.route("/")
 def home():
-    return "Welcome to the NBA Stats API!"
+    # return "Welcome to the NBA Stats API!"
+    return render_template("index.html")
+
     
 
 # teams route
