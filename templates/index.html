@@ -13,8 +13,10 @@
     <h1>NBA Teams</h1>
     <p>Change the dropdown below to update the plots</p>
 
-    <select id="selDataset"> 
-        <option value ="Teams">Team</option>
+    <select id="selDataset">
+        {% for team_name in team_names -%}
+            <option>{{ team_name }}</option>
+        {% endfor %}
     </select>
     
     <script src="{{ url_for('static', filename='js/plots.js')}}"></script>
