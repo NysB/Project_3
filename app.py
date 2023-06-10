@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 import pandas as pd
 
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify
 # from flask_cors import CORS
 
 
@@ -40,7 +40,6 @@ app = Flask(__name__)
 #################################################
 @app.route("/")
 def home():
-        
     return "Welcome to the NBA Stats API!"
     
 
@@ -60,9 +59,12 @@ def get_teams():
         team_dict["PPG"] = PPG
         team_dict["APG"] = APG
         team_dict["RPG"] = RPG
+        
         results.append(team_dict)
+        
     
     return jsonify(results)
+
 
 
 #  player scores route

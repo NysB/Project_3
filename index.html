@@ -10,15 +10,38 @@
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
 </head>
 <body>
-    <h1>NBA Players</h1>
-    <p>Change the dropdown below to update the plots</p>
-    <select id="myDropdown">
-        {% for value in data %}
-          <option>{{ value }}</option>
-        {% endfor %}
-    </select>
+
+    <div class="container">
+        <div class="row"></div>
+        <div class="col-md-12 jumbotron text-center">
+        <h1>NBA Dashboard</h1>
+        <p>Change the dropdown below to update the plots</p>
     
-    <script src="plots.js"></script>
+
+    
+     <select id="teamDropdown">
+        
+        <option value="value">DataSet</option>
+        <option value="southAfrica">South Africa</option>
+    </select>
+
+    <div id="line"></div>
+
+     
+     </div>
+  
+
+        
+
+       
+          
+        <div id="playerPieChart"></div>
+     
+
+
+
+        </div>
+    <script src="plots1.js"></script>
 
 
     <h4>Data Sources:</h4>
