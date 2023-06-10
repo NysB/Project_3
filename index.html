@@ -13,10 +13,7 @@
     <h1>NBA Players</h1>
     <p>Change the dropdown below to update the plots</p>
 
-    <select id="myDropdown">
-        {% for team in teams %}
-          <option>{{ team['Team'] }}</option>
-        {% endfor %}
+    <select id="selDataset">
     </select>
     
     <script src="plots.js"></script>

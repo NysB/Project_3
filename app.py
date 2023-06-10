@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 import pandas as pd
 
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify
 # from flask_cors import CORS
 
 
@@ -38,18 +38,13 @@ app = Flask(__name__)
 #################################################
 # Flask Routes
 #################################################
-
-
 @app.route("/")
-@app.route("/home")
 def home():
-    teams = get_teams()
-    player_scores = get_player_scores()
-    player_info = get_player_info()
-    return render_template("index.html", teams=teams, player_scores=player_scores, player_info=player_info)
+    return "Welcome to the NBA Stats API!"
+    
 
 # teams route
-# @app.route("/teams")
+@app.route("/teams")
 def get_teams():
     # Query the team table and return the results as JSON
 
@@ -66,14 +61,10 @@ def get_teams():
         team_dict["RPG"] = RPG
         results.append(team_dict)
     
-
-    return results
-    # return jsonify(results)
-    # return render_template("team.html", results=results)
-
+    return jsonify(results)
 
 #  player scores route
-# @app.route("/player_scores")
+@app.route("/player_scores")
 def get_player_scores():
     # Query the Player_score_table and return the results as JSON
     
@@ -94,13 +85,12 @@ def get_player_scores():
 
         results.append(player_score_dict)
     
-    return results
-    # return jsonify(results)
+    return jsonify(results)
 
 
 # player info route
 
-# @app.route("/player_info")
+@app.route("/player_info")
 def get_player_info():
     # Query the player info table and return the results as JSON
     
@@ -125,10 +115,8 @@ def get_player_info():
         player_info_dict["NBA Status"] = NBA_status
         player_info_dict["Draft Entry"] = Draft_entry
         results.append(player_info_dict)
-
-    return results
-    # return jsonify(results)
-    # return render_template("player_info.html", results=results)
+    
+    return jsonify(results)
 
 
 if __name__ == "__main__":
