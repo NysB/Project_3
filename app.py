@@ -40,10 +40,22 @@ app = Flask(__name__)
 #################################################
 @app.route("/")
 def home():
-    # return "Welcome to the NBA Stats API!"
-    return render_template("index.html")
+    return "Welcome to the NBA Stats API!"
+    # return render_template("index.html")
 
-    
+@app.route("/teamName") 
+def get_teamName():
+    session = Session(engine)  
+    res = session.query(Team_table.Team).all()
+    session.close()
+
+    # team_names = []
+    # for row in res:
+    #     team_names.append(row['Team'])
+
+    team_names = [row[0] for row in res]
+    return render_template('index.html', team_names=team_names)
+
 
 # teams route
 @app.route("/teams")
