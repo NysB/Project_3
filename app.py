@@ -48,6 +48,7 @@ def get_teamName():
     return render_template('index.html', team_names=team_names)
 
 
+
 # teams route
 @app.route("/teams")
 @cross_origin()
