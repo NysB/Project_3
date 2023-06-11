@@ -4,25 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Welcome to the NBA Stats API!</title>
+    
+    <title>NBA Stats Dashboard</title>
+    
+
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
-</head>
-<body>
-    <h1>NBA Teams</h1>
-    <p>Change the dropdown below to update the plots</p>
-
-    <select id="selDataset">
-        {% for team_name in team_names -%}
-            <option>{{ team_name }}</option>
-        {% endfor %}
-    </select>
-    <div id="teamLineChart"></div>
-    <!-- <div id="teamChart"></div> -->
+   
     
-    <script src="{{ url_for('static', filename='js/plots.js')}}"></script>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    
+    <link rel="stylesheet" href="/static/js/style.css" />
 
+</head>
+
+<body>
+
+
+        <nav  class="main-nav"> 
+            <ul class="main-logo-items"> 
+                    <img class="link-logo" src="/img/nba-logo.png" alt="">
+                    <h1 class="main-logo"> NBA Statistics Dashboard</h1>     
+            </ul>
+
+        </nav>
+        
+    <div class="container">
+        <div class="row">
+        <div class="col-sm-6 jumbotron text-center">
+            
+        <h2>NBA Dashboard desined to explore the dataset</h2>
+        <p>Change the dropdown below to update the plots</p>
+        
+        <select id="teamDropdown" name="option" onchange="optionChanged(this.value)">
+            <option value="" disabled selected> Select a Team </option>
+            <option value="team">Team</option>
+            <div> id= ""</div>
+
+        </select>
+
+        
+
+
+
+
+            <div id="teamLineChart"></div>
+           
+
+            
+            <div id="playerPieChart"></div>
+    
+
+
+            <div id="map"></div>
+
+
+
+
+     
+
+
+
+  
 
     <h4>Data Sources:</h4>
         <ul>
@@ -38,18 +83,28 @@
     <p>The following endpoints are available to access data:</p>
     <ul>
         <li>
-            <a href="https://nbadashboardproject.azurewebsites.net/teams">/api/teams</a>
-            <p>Return a list of all NBA Teams & various scores</p>
+            <a href="http://localhost:5000/teams">/api/teams</a>
+            <p>Return a list of all NBA Teams</p>
         </li>
         <li>
-            <a href="https://nbadashboardproject.azurewebsites.net/player_info">/api/player_info</a>
+            <a href="http://localhost:5000/player_info">/api/player_info</a>
             <p>Return a list of player data</p>
         </li>
         <li>
-            <a href="https://nbadashboardproject.azurewebsites.net/player_scores">/api/player_scores</a>
+            <a href="http://localhost:5000/player_scores">/api/player_scores</a>
             <p>Return a list of player scores across a number of years</p>
         </li>
     </ul>
+
+
+
+
+    <script src="/static/js/plots.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="/nbamap/nbamap.js"></script>
+    
+    <script src="{{ url_for('static', filename='js/plots.js') }}"></script>
+ 
     
 </body>
 </html>
