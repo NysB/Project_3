@@ -1,3 +1,10 @@
+# Include subprocess for azure connection
+
+import subprocess
+
+subprocess.Popen("python app.py", shell=True)
+
+
 # Import the dependencies.
 import numpy as np
 
@@ -9,7 +16,6 @@ import pandas as pd
 
 from flask import Flask, jsonify, render_template
 from flask_cors import CORS, cross_origin
-
 
 #################################################
 # Database Setup
