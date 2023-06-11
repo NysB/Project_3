@@ -52,7 +52,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: python-app
-          path: cd ../..
+          path: 
           
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
@@ -61,5 +61,4 @@ jobs:
           app-name: 'DashboardProject3'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_82F360E13A884E98BA5515D3EA7FBCF7 }}
-          package: .
           images: azure/webapps-deploy
