@@ -38,12 +38,17 @@
         <h2>NBA Dashboard desined to explore the dataset</h2>
         <p>Change the dropdown below to update the plots</p>
         
-        <select id="teamDropdown" name="option" onchange="optionChanged(this.value)">
-            <option value="" disabled selected> Select a Team </option>
-            <option value="team">Team</option>
-            <div> id= ""</div>
-
+        <select id="selDataset">
+            {% for team_name in team_names -%}
+                <option>{{ team_name }}</option>
+            {% endfor %}
         </select>
+
+        <div id="teamLineChart"></div>
+        <!-- <div id="teamChart"></div> -->
+
+
+       
 
         
 
