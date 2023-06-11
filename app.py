@@ -8,8 +8,12 @@ from sqlalchemy import create_engine, func
 import pandas as pd
 
 from flask import Flask, jsonify, render_template
+<<<<<<< Updated upstream
 from flask_cors import CORS, cross_origin
 
+=======
+# from flask_cors import CORS
+>>>>>>> Stashed changes
 
 
 #################################################
@@ -42,6 +46,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 #################################################
 @app.route("/")
 def home():
+<<<<<<< Updated upstream
     return "Welcome to the NBA Stats API!"
     # return render_template("index.html")
 
@@ -58,6 +63,10 @@ def get_teamName():
     team_names = [row[0] for row in res]
     return render_template('index.html', team_names=team_names)
 
+=======
+    return render_template("index.html")
+    
+>>>>>>> Stashed changes
 
 # teams route
 @app.route("/teams")
@@ -78,8 +87,8 @@ def get_teams():
         team_dict["RPG"] = RPG
         results.append(team_dict)
     
-    return jsonify(results)
-
+        return render_template("index.html")
+    
 #  player scores route
 @app.route("/player_scores")
 @cross_origin()
