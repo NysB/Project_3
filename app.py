@@ -1,10 +1,3 @@
-# Include subprocess for azure connection
-
-import subprocess
-
-subprocess.Popen("python app.py", shell=True)
-
-
 # Import the dependencies.
 import numpy as np
 
