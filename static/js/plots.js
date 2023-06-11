@@ -1,8 +1,8 @@
 
 
-const teamDataApiUrl = "http://127.0.0.1:5000/teams";
-const playerScoresApiUrl = "http://127.0.0.1:5000/player_scores";
-const playerInfoApiUrl = "http://127.0.0.1:5000/player_info";
+const teamDataApiUrl = "https://nbadashboardproject.azurewebsites.net/teams";
+const playerScoresApiUrl = "https://nbadashboardproject.azurewebsites.net/player_scores";
+const playerInfoApiUrl = "https://nbadashboardproject.azurewebsites.net/player_info";
 
 init();
 
