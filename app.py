@@ -8,6 +8,7 @@ from sqlalchemy import create_engine, func
 import pandas as pd
 
 from flask import Flask, jsonify, render_template
+from flask_cors import CORS, cross_origin
 
 
 
@@ -32,7 +33,8 @@ Player_info_table = Base.classes.Player_info_table
 # Flask Setup
 #################################################
 app = Flask(__name__)
-# CORS(app)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 #################################################
@@ -59,6 +61,7 @@ def get_teamName():
 
 # teams route
 @app.route("/teams")
+@cross_origin()
 def get_teams():
     # Query the team table and return the results as JSON
 
@@ -79,6 +82,7 @@ def get_teams():
 
 #  player scores route
 @app.route("/player_scores")
+@cross_origin()
 def get_player_scores():
     # Query the Player_score_table and return the results as JSON
     
@@ -105,6 +109,7 @@ def get_player_scores():
 # player info route
 
 @app.route("/player_info")
+@cross_origin()
 def get_player_info():
     # Query the player info table and return the results as JSON
     
