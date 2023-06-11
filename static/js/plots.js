@@ -12,8 +12,8 @@ function init() {
     .then(([teams, playerScores, playerInfo]) => {
       populateDropdown(teams);
       const initialTeam = teams[0].Team;
-      // updateTeamLineChart(initialTeam, playerScores);
-      // updatePlayerPieChart(initialTeam, playerInfo);
+      updateTeamLineChart(initialTeam, playerScores);
+      updatePlayerPieChart(initialTeam, playerInfo);
     })
     .catch((error) => {
       console.log(error);
@@ -72,3 +72,22 @@ function populateDropdown(teams) {
 }
 
 
+function updateTeamLineChart(team, playerScores) {
+  // Update the team line chart based on the selected team
+  
+  // Filter the player scores data for the selected team
+  let filteredPlayerScores = playerScores.filter((d) => d.Team === team);
+  
+  // Process the filtered data and update the chart
+  // ...
+}
+
+function updatePlayerPieChart(team, playerInfo) {
+  // Update the player pie chart based on the selected team
+  
+  // Filter the player info data for the selected team
+  let filteredPlayerInfo = playerInfo.filter((d) => d.Team === team);
+  
+  // Process the filtered data and update the chart
+  // ...
+}
