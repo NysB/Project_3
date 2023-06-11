@@ -9,7 +9,9 @@ A collaborative project to develop a full-stack data visualization web applicati
 
 
 ## How to Run
-
+To run the file, please follow the below steps:
+  1. Install flask_cors by running the following line in command prompt: "pip install -U flask-cors"
+  2. 
 
 
 ## Outcome
