@@ -73,21 +73,36 @@ function populateDropdown(teams) {
 
 
 function updateTeamLineChart(team, playerScores) {
-  // Update the team line chart based on the selected team
+  let filteredScores = playerScores.filter((score) => score.Player === team);
   
-  // Filter the player scores data for the selected team
-  let filteredPlayerScores = playerScores.filter((d) => d.Team === team);
+  let dataPlot = [
+    { x: filteredScores.map((score) => score.Year), y: filteredScores.map((score) => score.PTS), type: "line", name: "PTS" },
+    { x: filteredScores.map((score) => score.Year), y: filteredScores.map((score) => score.AST), type: "line", name: "AST" },
+    { x: filteredScores.map((score) => score.Year), y: filteredScores.map((score) => score.TRB), type: "line", name: "TRB" }
+  ];
   
-  // Process the filtered data and update the chart
-  // ...
+  let layout = { 
+    title: "Team Scores", 
+    xaxis: { title: "Year" }, 
+    yaxis: { title: "Scores" } 
+  };
+  
+  Plotly.newPlot("teamLineChart", dataPlot, layout);
 }
 
 function updatePlayerPieChart(team, playerInfo) {
-  // Update the player pie chart based on the selected team
+  let filteredInfo = playerInfo.filter((info) => info.Current_team === team);
   
-  // Filter the player info data for the selected team
-  let filteredPlayerInfo = playerInfo.filter((d) => d.Team === team);
+  let playerNames = filteredInfo.map((info) => info.Player);
+  let playerAges = filteredInfo.map((info) => info.Age);
   
-  // Process the filtered data and update the chart
-  // ...
+  let dataPlot = [
+    { labels: playerNames, values: playerAges, type: "pie" }
+  ];
+  
+  let layout = { 
+    title: "Player Ages", 
+  };
+  
+  Plotly.newPlot("playerPieChart", dataPlot, layout);
 }
