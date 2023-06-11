@@ -61,3 +61,4 @@ jobs:
           app-name: 'NBADashboardProject'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C748EB78988E44FDAC221B5419A14BC9 }}
+          images:
