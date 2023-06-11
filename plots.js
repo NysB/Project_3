@@ -343,6 +343,7 @@ function updatePlayerPieChart(team, playerInfo) {
   let selectedTeam = dropdownMenu.property("value");
   updateTeamLineChart(selectedTeam, getPlayerScores());
   updatePlayerPieChart(selectedTeam, getPlayerInfo());
+  
 }
 
 // On change to the dropdown menu, call refreshPlot()

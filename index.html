@@ -4,45 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Welcome to the NBA Stats API!</title>
+    
+    <title>NBA Stats Dashboard</title>
+    
+
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+   
+    
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    
+    <link rel="stylesheet" href="style.css" />
+
 </head>
+
 <body>
 
+
+        <nav  class="main-nav"> 
+            <ul class="main-logo-items"> 
+                    <img class="link-logo" src="img/nba-logo.png" alt="">
+                    <h1 class="main-logo"> NBA Statistics Dashboard</h1>     
+            </ul>
+
+        </nav>
+        
     <div class="container">
-        <div class="row"></div>
-        <div class="col-md-12 jumbotron text-center">
-        <h1>NBA Dashboard</h1>
+        <div class="row">
+        <div class="col-sm-6 jumbotron text-center">
+            
+        <h2>NBA Dashboard desined to explore the dataset</h2>
         <p>Change the dropdown below to update the plots</p>
-    
-
-    
-     <select id="teamDropdown">
         
-        <option value="value">DataSet</option>
-        <option value="southAfrica">DataSet2</option>
+        <select id="teamDropdown" name="option" onchange="optionChanged(this.value)">
+        <option value="" disabled selected>Choose your option</option>
+        <option value="value">Team</option>
+        <option value="value">DataSet2</option>
+    
     </select>
-
-    <div id="line"></div>
-
-     
-     </div>
-  
-
-        
-
-       
-          
-        <div id="playerPieChart"></div>
-     
+        </div>
 
 
 
+
+            <div id="teamLineChart"></div>
+           
+
+            
+            <div id="playerPieChart"></div>
     
-    <script src="plots.js"></script>
 
+
+            <div id="map"></div>
+
+
+
+
+     
+
+
+
+  
 
     <h4>Data Sources:</h4>
         <ul>
@@ -70,6 +94,15 @@
             <p>Return a list of player scores across a number of years</p>
         </li>
     </ul>
+
+
+
+
+    <script src="plots.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <script src="/nbamap/nbamap.js"></script>
+    <script src="{{ url_for('static', filename='js/plots.js') }}"></script>
+ 
     
 </body>
 </html>
