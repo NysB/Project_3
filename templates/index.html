@@ -16,7 +16,8 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
     
-    <link rel="stylesheet" href="/static/js/style.css" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+
 
 </head>
 
@@ -29,22 +30,40 @@
         </nav>
         
     <div class="container">
-        <div class="row">
-        <div class="col-sm-6 jumbotron text-center">
+            <div class="row">
+                <div class="col-sm-6 jumbotron text-center">
             
-        <h2>NBA Dashboard</h2>
-        <h6> This dashboard allows users to explosure the historical performance of various NBA teams and gain insights into the players associated with each team.</h6>
-        <p>Change the dropdown below to update the plots</p>
+                <h2>NBA Dashboard</h2>
+                <h6> This dashboard allows users to explosure the historical performance of various NBA teams and gain insights into the players associated with each team.</h6>
+                 <p>Change the dropdown below to update the plots</p>
         
-        <select id="selDataset">
-            {% for team_name in team_names -%}
-                <option>{{ team_name }}</option>
-            {% endfor %}
-        </select>
+                 <select id="selDataset" onchange=" updateCharts(this.value)">
+                  {% for select_team in team_names -%}
+                 <option>{{ select_team }}</option>
+                     {% endfor %}
+                  </select>
+                
+        
+                </div>
+            </div>
 
-        <div id="teamLineChart"></div>
-        <div id="playerPieChart"></div>
-        <div id="map"></div>
+            
+            <div class="row">
+                <div class="col-sm-6">
+                    <div id="teamLineChart"></div>
+                    </div>
+
+                <div class="col-sm-6">
+                    <div id="playerPieChart"></div>
+                    </div>
+                  </div>
+              
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div id="map"></div>
+                </div>
+            </div>
+
 
 
     <h4>Data Sources:</h4>
