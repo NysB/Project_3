@@ -16,7 +16,7 @@ To access and utilize our NBA Dashboard, simply follow the link
 
  ### Dashboard will update the graphs and information accordingly
  
- ![](https://github.com/NysB/Project_3/blob/main/GIF%20for%20demo/webproj%20part%202.gif)
+ ![](https://github.com/NysB/Project_3/blob/main/GIF%20for%20demo/webproj%20part%202-1.gif)
  
 
 Furthermore, links have been provided to retrieve the underlying data yourself. 
