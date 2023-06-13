@@ -21,7 +21,7 @@ function getTeams() {
   return d3.json(teamDataApiUrl).then((data) => {
     // Process the retrieved JSON data
     console.log(data);
-    console.log(Team)
+    console.log(data.Team)
     return data;
   });
 }
