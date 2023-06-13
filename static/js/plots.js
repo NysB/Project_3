@@ -21,7 +21,6 @@ function getTeams() {
   return d3.json(teamDataApiUrl).then((data) => {
     // Process the retrieved JSON data
     console.log(data);
-    console.log(data.Team)
     return data;
   });
 }
@@ -75,7 +74,9 @@ function updateCharts(team, playerInfo) {
 }
 
 function updateTeamBarChart(team,Teams) {
-  let filteredInfo = Teams.filter((info) => info.Current_team === team);
+    const teamNames = data.map((team) => team.Team);
+    console.log(teamNames);
+
   let teamCategories = ["APG", "PPG", "RPG"];
   let teamScores = [Teams.APG, Teams.PPG, Teams.RPG];
 
