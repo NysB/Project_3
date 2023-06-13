@@ -12,7 +12,7 @@ To access and utilize our NBA Dashboard, simply follow the link
 
  ### Select a team of interest
  
- ![](https://github.com/NysB/Project_3/blob/main/GIF%20for%20demo/webproj%20part%201.gif)
+ ![](https://github.com/NysB/Project_3/blob/main/GIF%20for%20demo/webproj%20part%201-1.gif)
 
  ### Dashboard will update the graphs and information accordingly
  
