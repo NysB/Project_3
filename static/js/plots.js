@@ -67,17 +67,17 @@ function getPlayerInfo() {
   //     });
   // });
   function populateDropdown(teams) {
-    let dropdownMenu = document.getElementById("selDataset");
+    let dropdownMenu = d3.select("#selDataset");
+    dropdownMenu.selectAll("option")
+      .data(teams)
+      .enter()
+      .append("option")
+      .text((team) => team.Team)
+      .attr("value", (team) => team.Team)
+      .property("selected", (team, i) => i === 0);
   
-    teams.forEach((team) => {
-      let option = document.createElement("option");
-      option.value = team.Team;
-      option.text = team.Team;
-      dropdownMenu.appendChild(option);
-    });
-  
-    dropdownMenu.addEventListener("change", () => {
-      const selectedTeam = dropdownMenu.value;
+    dropdownMenu.on("change", () => {
+      const selectedTeam = d3.select("#selDataset").node().value;
       updateCharts(selectedTeam);
     });
   }
