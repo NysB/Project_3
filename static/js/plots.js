@@ -10,7 +10,7 @@ function init() {
     .then(([teams, playerScores, playerInfo]) => {
       populateDropdown(teams);
       const initialTeam = teams[0].Team;
-      updateTeamLineChart(initialTeam, playerScores);
+      updateTeamBarChart(initialTeam, playerScores);
       updatePlayerPieChart(initialTeam, playerInfo);
     })
     .catch((error) => {
@@ -116,30 +116,53 @@ function populateDropdown(teams) {
 }
 
 function updateCharts(team, playerScores, playerInfo) {
-  updateTeamLineChart(team, playerScores);
+  updateTeamBarChart(team, playerScores);
   updatePlayerPieChart(team, playerInfo);
 }
 
 
 
 
-function updateTeamLineChart(team, playerScores) {
-  let filteredScores = playerScores.filter((score) => score.Player === team);
-  
+function updateTeamBarChart(team, teamData) {
+  let teamCategories = ["APG", "PPG", "RPG"];
+  let teamScores = [teamData.APG, teamData.PPG, teamData.RPG];
+
   let dataPlot = [
-    { x: filteredScores.map((score) => parseInt(score.Year)), y: filteredScores.map((score) => parseInt(score.PTS)), type: "line", name: "PTS" },
-    { x: filteredScores.map((score) => parseInt(score.Year)), y: filteredScores.map((score) => parseInt(score.AST)), type: "line", name: "AST" },
-    { x: filteredScores.map((score) => parseInt(score.Year)), y: filteredScores.map((score) => parseInt(score.TRB)), type: "line", name: "TRB" }
+    { x: teamCategories, y: teamScores, type: "bar", name: "Team Scores" }
   ];
-  
-  let layout = { 
-    title: "Team Scores", 
-    xaxis: { title: "Year" }, 
-    yaxis: { title: "Scores" } 
+
+  // Filter player scores for the selected team
+  let filteredPlayerScores = playerScores.filter((score) => score.Team === team);
+
+  // Extract player names and scores
+  let playerNames = filteredPlayerScores.map((score) => score.Player);
+  let playerScores = filteredPlayerScores.map((score) => score.Score);
+
+  dataPlot.push({ x: playerNames, y: playerScores, type: "bar", name: "Player Scores" });
+
+  let layout = {
+    title: "Team and Player Scores",
+    xaxis: { title: "Category" },
+    yaxis: { title: "Scores" }
   };
-  
-  Plotly.newPlot("teamLineChart", dataPlot, layout);
+
+  Plotly.newPlot("teamBarChart", dataPlot, layout);
 }
+  
+//   let dataPlot = [
+//     { x: filteredScores.map((score) => parseInt(score.Year)), y: filteredScores.map((score) => parseInt(score.PTS)), type: "line", name: "PTS" },
+//     { x: filteredScores.map((score) => parseInt(score.Year)), y: filteredScores.map((score) => parseInt(score.AST)), type: "line", name: "AST" },
+//     { x: filteredScores.map((score) => parseInt(score.Year)), y: filteredScores.map((score) => parseInt(score.TRB)), type: "line", name: "TRB" }
+//   ];
+  
+//   let layout = { 
+//     title: "Team Scores", 
+//     xaxis: { title: "Year" }, 
+//     yaxis: { title: "Scores" } 
+//   };
+  
+//   Plotly.newPlot("teamLineChart", dataPlot, layout);
+// }
 
 
 
