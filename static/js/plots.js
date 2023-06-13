@@ -10,7 +10,7 @@ function init() {
     .then(([teams, playerScores, playerInfo]) => {
       populateDropdown(teams);
       const initialTeam = teams[0].Team;
-      updateTeamLineChart(initialTeam, playerScores);
+      updateTeamBarChart(initialTeam, playerScores);
       updatePlayerPieChart(initialTeam, playerInfo);
     })
     .catch((error) => {
@@ -54,41 +54,31 @@ function getPlayerInfo() {
 //originally populateDropdown function was not using the selected team to filter the data,
 // nor was it passing the selected team to the update functions for the charts. This has been fixed.
 
-// function populateDropdown(teams) {
-//   let dropdownMenu = d3.select("#selDataset");
-//   dropdownMenu.selectAll("option")
-//     .data(teams)
-//     .enter()
-//     .append("option")
-//     .text((team) => team.Team)
-//     .attr("value", (team) => team.Team)
-//     .property("selected", (team, i) => i === 0);
+function populateDropdown(teams) {
+  let dropdownMenu = d3.select("#selDataset");
+  dropdownMenu.selectAll("option")
+    .data(teams)
+    .enter()
+    .append("option")
+    .text((team) => team.Team)
+    .attr("value", (team) => team.Team)
+    .property("selected", (team, i) => i === 0);
   
-//   dropdownMenu.on("change", () => {
-//     const selectedTeam = d3.select("#selDataset").node().value;
-//     Promise.all([getPlayerScores(), getPlayerInfo()])
-//       .then(([playerScores, playerInfo]) => {
-//         updateCharts(selectedTeam, playerScores, playerInfo);
-//       })
-//       .catch((error) => {
-//         console.log(error);
-//       });
-//   });
-// }
+  dropdownMenu.on("change", () => {
+    const selectedTeam = d3.select("#selDataset").node().value;
+    Promise.all([getPlayerScores(), getPlayerInfo()])
+      .then(([playerScores, playerInfo]) => {
+        updateCharts(selectedTeam, playerInfo);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
+}
 
 function updateCharts(team, playerInfo) {
   updateTeamBarChart(team);
   updatePlayerPieChart(team, playerInfo);
-}
-
-function populateDropdown(teams) {
-  let dropdownMenu = d3.select("#selDataset");
-  let filter = dropdownMenu.property("value");
-
-  d3.json(teamDataApiUrl).then((data) => {
-    let filteredData = data.filter((d) => d.Team === filter);
-    updateTeamBarChart(filter, filteredData[0]);
-  });
 }
 
 function updateTeamBarChart(team) {
@@ -107,27 +97,6 @@ function updateTeamBarChart(team) {
 
   Plotly.newPlot("teamBarChart", dataPlot, layout);
 }
-
-
-// function updateTeamLineChart(team, playerScores) {
-//   let filteredScores = playerScores.filter((score) => score.Player === team);
-  
-//   let dataPlot = [
-//     { x: filteredScores.map((score) => parseInt(score.Year)), y: filteredScores.map((score) => parseInt(score.PTS)), type: "line", name: "PTS" },
-//     { x: filteredScores.map((score) => parseInt(score.Year)), y: filteredScores.map((score) => parseInt(score.AST)), type: "line", name: "AST" },
-//     { x: filteredScores.map((score) => parseInt(score.Year)), y: filteredScores.map((score) => parseInt(score.TRB)), type: "line", name: "TRB" }
-//   ];
-  
-//   let layout = { 
-//     title: "Team Scores", 
-//     xaxis: { title: "Year" }, 
-//     yaxis: { title: "Scores" } 
-//   };
-  
-//   Plotly.newPlot("teamLineChart", dataPlot, layout);
-// }
-
-
 
 function updatePlayerPieChart(team, playerInfo) {
   let filteredInfo = playerInfo.filter((info) => info.Current_team === team);
@@ -180,35 +149,8 @@ function updatePlayerPieChart(team, playerInfo) {
     });
   }
 }
-// function updateTeamBarChart(team, teamData) {
-//   let teamCategories = ["APG", "PPG", "RPG"];
-//   let teamScores = [team.APG, teamData.PPG, teamData.RPG];
-
-//   let dataPlot = [
-//     { x: teamCategories, y: teamScores, type: "bar", name: "Team Scores" }
-//   ];
-
-//   // Filter player scores for the selected team
-//   let filteredPlayerScores = playerScores.filter((score) => score.Team === team);
-
-//   // Extract player names and scores
-//   let playerNames = filteredPlayerScores.map((score) => score.Player);
-//   let playerScores = filteredPlayerScores.map((score) => score.Score);
-
-//   dataPlot.push({ x: playerNames, y: playerScores, type: "bar", name: "Player Scores" });
-
-//   let layout = {
-//     title: "Team and Player Scores",
-//     xaxis: { title: "Category" },
-//     yaxis: { title: "Scores" }
-//   };
-
-//   Plotly.newPlot("teamBarChart", dataPlot, layout);
-// }
-
-
-
-
-
 
 init();
+
+
+
