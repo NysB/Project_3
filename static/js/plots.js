@@ -98,16 +98,6 @@ function getPlayerInfo() {
   
 //   Plotly.newPlot("teamLineChart", dataPlot, layout);
 // }
-
-function populateDropdown(teams) {
-  let dropdownMenu = d3.select("#selDataset");
-  dropdownMenu.selectAll("option")
-    .data(teams)
-    .enter()
-    .append("option")
-    .text((team) => team.Team)
-    .attr("value", (team) => team.Team)
-    .property("selected", (team, i) => i === 0);
   
   dropdownMenu.on("change", () => {
     const selectedTeam = d3.select("#selDataset").node().value;
@@ -119,7 +109,6 @@ function populateDropdown(teams) {
         console.log(error);
       });
   });
-}
 
 function updateCharts(team, playerInfo) {
   updateTeamBarChart(team);
