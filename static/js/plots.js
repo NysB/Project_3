@@ -82,10 +82,17 @@ function getPlayerInfo() {
     });
   }
 
-function updateCharts(team, playerInfo) {
-  updateTeamBarChart(team, Teams);
-  updatePlayerPieChart(team, playerInfo);
-}
+  function updateCharts(team) {
+    Promise.all([getTeams(), getPlayerInfo()])
+      .then(([teams, playerInfo]) => {
+        const selectedTeam = teams.find((t) => t.Team === team);
+        updateTeamBarChart(selectedTeam, teams);
+        updatePlayerPieChart(selectedTeam, playerInfo);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
 function updateTeamBarChart(team, Teams) {
   const teamNames = Teams.map((team) => team.Team);
