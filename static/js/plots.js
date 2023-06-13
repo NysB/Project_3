@@ -53,6 +53,53 @@ function getPlayerInfo() {
 
 //originally populateDropdown function was not using the selected team to filter the data,
 // nor was it passing the selected team to the update functions for the charts. This has been fixed.
+// function populateDropdown(teams) {
+//   let dropdownMenu = d3.select("#selDataset");
+//   dropdownMenu.selectAll("option")
+//     .data(teams)
+//     .enter()
+//     .append("option")
+//     .text((team) => team.Team)
+//     .attr("value", (team) => team.Team)
+//     .property("selected", (team, i) => i === 0);
+  
+//   dropdownMenu.on("change", () => {
+//     const selectedTeam = d3.select("#selDataset").node().value;
+//     Promise.all([getPlayerScores(), getPlayerInfo()])
+//       .then(([playerScores, playerInfo]) => {
+//         updateCharts(selectedTeam, playerScores, playerInfo);
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       });
+//   });
+// }
+
+// function updateCharts(team, playerScores, playerInfo) {
+//   updateTeamLineChart(team, playerScores);
+//   updatePlayerPieChart(team, playerInfo);
+// }
+
+
+
+
+// function updateTeamLineChart(team, playerScores) {
+//   let filteredScores = playerScores.filter((score) => score.Player === team);
+  
+//   let dataPlot = [
+//     { x: filteredScores.map((score) => parseInt(score.Year)), y: filteredScores.map((score) => parseInt(score.PTS)), type: "line", name: "PTS" },
+//     { x: filteredScores.map((score) => parseInt(score.Year)), y: filteredScores.map((score) => parseInt(score.AST)), type: "line", name: "AST" },
+//     { x: filteredScores.map((score) => parseInt(score.Year)), y: filteredScores.map((score) => parseInt(score.TRB)), type: "line", name: "TRB" }
+//   ];
+  
+//   let layout = { 
+//     title: "Team Scores", 
+//     xaxis: { title: "Year" }, 
+//     yaxis: { title: "Scores" } 
+//   };
+  
+//   Plotly.newPlot("teamLineChart", dataPlot, layout);
+// }
 
 function populateDropdown(teams) {
   let dropdownMenu = d3.select("#selDataset");
