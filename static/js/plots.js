@@ -46,30 +46,44 @@ function getPlayerInfo() {
 
 
 
-function populateDropdown(teams) {
-  let dropdownMenu = d3.select("#selDataset");
-  dropdownMenu.selectAll("option")
-    .data(teams)
-    .enter()
-    .append("option")
-    .text((team) => team.Team)
-    .attr("value", (team) => team.Team)
-    .property("selected", (team, i) => i === 0);
+// function populateDropdown(teams) {
+//   let dropdownMenu = d3.select("#selDataset");
+//   dropdownMenu.selectAll("option")
+//     .data(teams)
+//     .enter()
+//     .append("option")
+//     .text((team) => team.Team)
+//     .attr("value", (team) => team.Team)
+//     .property("selected", (team, i) => i === 0);
   
-  dropdownMenu.on("change", () => {
-    const selectedTeam = d3.select("#selDataset").node().value;
-    Promise.all([getTeams(), getPlayerInfo()])
-      .then(([teams, playerInfo]) => {
-        updateCharts(selectedTeam, playerInfo);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  });
-}
+  // dropdownMenu.on("change", () => {
+  //   const selectedTeam = d3.select("#selDataset").node().value;
+  //   Promise.all([getTeams(), getPlayerInfo()])
+  //     .then(([team, playerInfo]) => {
+  //       updateCharts(selectedTeam, playerInfo);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // });
+  function populateDropdown(teams) {
+    let dropdownMenu = document.getElementById("selDataset");
+  
+    teams.forEach((team) => {
+      let option = document.createElement("option");
+      option.value = team.Team;
+      option.text = team.Team;
+      dropdownMenu.appendChild(option);
+    });
+  
+    dropdownMenu.addEventListener("change", () => {
+      const selectedTeam = dropdownMenu.value;
+      updateCharts(selectedTeam);
+    });
+  }
 
 function updateCharts(team, playerInfo) {
-  updateTeamBarChart(team);
+  updateTeamBarChart(team, Teams);
   updatePlayerPieChart(team, playerInfo);
 }
 
