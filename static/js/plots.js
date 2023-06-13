@@ -74,7 +74,7 @@ function updateCharts(team, playerInfo) {
 }
 
 function updateTeamBarChart(team,Teams) {
-    const teamNames = data.map((team) => team.Team);
+    const teamNames = Teams.map((team) => team.Team);
     console.log(teamNames);
 
   let teamCategories = ["APG", "PPG", "RPG"];
