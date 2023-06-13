@@ -74,8 +74,8 @@ function updateCharts(team, playerInfo) {
 }
 
 function updateTeamBarChart(team,Teams) {
-    const teamNames = Teams.map((team) => team.Team);
-    console.log(teamNames);
+    // const teamNames = Teams.map((team) => team.Team);
+    console.log(Teams);
 
   let teamCategories = ["APG", "PPG", "RPG"];
   let teamScores = [Teams.APG, Teams.PPG, Teams.RPG];
