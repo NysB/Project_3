@@ -79,8 +79,8 @@ function populateDropdown(teams) {
   
   dropdownMenu.on("change", () => {
     const selectedTeam = d3.select("#selDataset").node().value;
-    Promise.all([getTeams(), getPlayerInfo()])
-      .then(([Teams, playerInfo]) => {
+    Promise.all([getPlayerScores(), getPlayerInfo()])
+      .then(([playerScores, playerInfo]) => {
         updateCharts(selectedTeam, playerInfo);
       })
       .catch((error) => {
@@ -95,7 +95,7 @@ function updateCharts(team, playerInfo) {
 }
 
 function updateTeamBarChart(team, Teams) {
-  let selectedTeam = Teams.find((team) => t.Team === team);
+  
   const apgScores = Teams.map((team) => team.APG);
   const ppgScores = Teams.map((team) => team.PPG);
   const rpgScores = Teams.map((team) => team.RPG);
