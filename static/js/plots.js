@@ -141,7 +141,22 @@ function updateTeamLineChart(team, playerScores) {
   Plotly.newPlot("teamLineChart", dataPlot, layout);
 }
 
+// function updateTeamBarChart(team, teamData) {
+//   let teamCategories = ["APG", "PPG", "RPG"];
+//   let teamScores = [teamData.APG, teamData.PPG, teamData.RPG];
 
+//   let dataPlot = [
+//     { x: teamCategories, y: teamScores, type: "bar" }
+//   ];
+
+//   let layout = {
+//     title: "Team Scores",
+//     xaxis: { title: "Category" },
+//     yaxis: { title: "Scores" }
+//   };
+
+//   Plotly.newPlot("teamBarChart", dataPlot, layout);
+// }
 
 function updatePlayerPieChart(team, playerInfo) {
   let filteredInfo = playerInfo.filter((info) => info.Current_team === team);
