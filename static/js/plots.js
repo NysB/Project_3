@@ -97,7 +97,26 @@ function getPlayerInfo() {
 //   };
   
 //   Plotly.newPlot("teamLineChart", dataPlot, layout);
-// }
+// }function updateTeamBarChart(team, teams) {
+  let filteredTeam = teams.find((t) => t.Team === team);
+  let teamCategories = ["APG", "PPG", "RPG"];
+  let teamScores = teamCategories.map((category) => {
+    return filteredTeam[category];
+  });
+
+  let dataPlot = [
+    { x: teamCategories, y: teamScores, type: "bar" }
+  ];
+
+  let layout = {
+    title: "Team Scores",
+    xaxis: { title: "Category" },
+    yaxis: { title: "Scores" }
+  };
+
+  Plotly.newPlot("teamBarChart", dataPlot, layout);
+
+
 
 function populateDropdown(teams) {
   let dropdownMenu = d3.select("#selDataset");
