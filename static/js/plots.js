@@ -66,33 +66,33 @@ function getPlayerInfo() {
   //       console.log(error);
   //     });
   // });
-  function populateDropdown(teams) {
-    let dropdownMenu = d3.select("#selDataset");
-    dropdownMenu.selectAll("option")
-      .data(teams)
-      .enter()
-      .append("option")
-      .text((team) => team.Team)
-      .attr("value", (team) => team.Team)
-      .property("selected", (team, i) => i === 0);
   
-    dropdownMenu.on("change", () => {
-      const selectedTeam = d3.select("#selDataset").node().value;
-      updateCharts(selectedTeam);
-    });
-  }
-
-  function updateCharts(team) {
-    Promise.all([getTeams(), getPlayerInfo()])
-      .then(([teams, playerInfo]) => {
-        const selectedTeam = teams.find((t) => t.Team === team);
-        updateTeamBarChart(selectedTeam, teams);
-        updatePlayerPieChart(selectedTeam, playerInfo);
+function populateDropdown(teams) {
+  let dropdownMenu = d3.select("#selDataset");
+  dropdownMenu.selectAll("option")
+    .data(teams)
+    .enter()
+    .append("option")
+    .text((team) => team.Team)
+    .attr("value", (team) => team.Team)
+    .property("selected", (team, i) => i === 0);
+  
+  dropdownMenu.on("change", () => {
+    const selectedTeam = d3.select("#selDataset").node().value;
+    Promise.all([getPlayerScores(), getPlayerInfo()])
+      .then(([playerScores, playerInfo]) => {
+        updateCharts(selectedTeam, playerInfo);
       })
       .catch((error) => {
         console.log(error);
       });
-  }
+  });
+}
+
+function updateCharts(team, playerInfo) {
+  updateTeamBarChart(team);
+  updatePlayerPieChart(team, playerInfo);
+}
 
 function updateTeamBarChart(team, Teams) {
   const teamNames = Teams.map((team) => team.Team);
