@@ -81,9 +81,9 @@ function updateCharts(team, playerInfo) {
   updatePlayerPieChart(team, playerInfo);
 }
 
-function updateTeamBarChart(team) {
+function updateTeamBarChart(Team) {
   let teamCategories = ["APG", "PPG", "RPG"];
-  let teamScores = [team.APG, team.PPG, team.RPG];
+  let teamScores = [Team.APG, Team.PPG, Team.RPG];
 
   let dataPlot = [
     { x: teamCategories, y: teamScores, type: "bar" }
