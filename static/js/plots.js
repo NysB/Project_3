@@ -1,5 +1,3 @@
-
-
 const teamDataApiUrl = "https://nbadashboardproject.azurewebsites.net/teams";
 const playerScoresApiUrl = "https://nbadashboardproject.azurewebsites.net/player_scores";
 const playerInfoApiUrl = "https://nbadashboardproject.azurewebsites.net/player_info";
@@ -198,6 +196,9 @@ function updatePlayerPieChart(team, playerInfo) {
 }
 
 init();
+
+
+
 
 
 
