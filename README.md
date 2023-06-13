@@ -7,9 +7,17 @@ A collaborative project to develop a full-stack data visualization web applicati
 The result is a tool that allows users to explosure the historical performance of various NBA teams and gain insights into the players associated with each team. 
 
 ## How to use
-To access and utilize our NBA Dashboard, simply follow the link provided below. Once you are in the tool, you can simply select a team of interest and the dashboard will update the graphs and information accordingly. 
+To access and utilize our NBA Dashboard, simply follow the link 
+ https://nbadashboardproject.azurewebsites.net/
+
+ ### Select a team of interest
  
-https://nbadashboardproject.azurewebsites.net/
+ ![](https://github.com/NysB/Project_3/blob/main/GIF%20for%20demo/webproj%20part%201.gif)
+
+ ### Dashboard will update the graphs and information accordingly
+ 
+ ![](https://github.com/NysB/Project_3/blob/main/GIF%20for%20demo/webproj%20part%202.gif)
+ 
 
 Furthermore, links have been provided to retrieve the underlying data yourself. 
 
