@@ -3,6 +3,7 @@ const playerScoresApiUrl = "https://nbadashboardproject.azurewebsites.net/player
 const playerInfoApiUrl = "https://nbadashboardproject.azurewebsites.net/player_info";
 
 function init() {
+  // Fetch teams, player scores, and player info from the APIs
   Promise.all([getTeams(), getPlayerScores(), getPlayerInfo()])
     .then(([teams, playerScores, playerInfo]) => {
       populateDropdown(teams);
@@ -16,66 +17,69 @@ function init() {
 }
 
 function getTeams() {
-  return fetch(teamDataApiUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      return data;
-    });
+  // Fetch team data from the API
+  return d3.json(teamDataApiUrl).then((data) => {
+    // Process the retrieved JSON data
+    console.log(data);
+    return data;
+  });
 }
 
 function getPlayerScores() {
-  return fetch(playerScoresApiUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      return data;
-    });
+  // Fetch player scores from the API
+  return d3.json(playerScoresApiUrl).then((data) => {
+    // Process the retrieved JSON data
+    console.log(data);
+    return data;
+  });
 }
+
 
 function getPlayerInfo() {
-  return fetch(playerInfoApiUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      return data;
-    });
+  // Fetch player info from the API
+  return d3.json(playerInfoApiUrl).then((data) => {
+    // Process the retrieved JSON data
+    console.log(data);
+    return data;
+  });
 }
+
+
 
 function populateDropdown(teams) {
-  // Populate the dropdown with team names
-  let dropdownMenu = document.getElementById("selDataset");
-  teams.forEach((team) => {
-    let option = document.createElement("option");
-    option.value = team.Team;
-    option.text = team.Team;
-    dropdownMenu.appendChild(option);
-  });
-
-  dropdownMenu.addEventListener("change", () => {
-    const selectedTeam = dropdownMenu.value;
-    updateCharts(selectedTeam);
+  let dropdownMenu = d3.select("#selDataset");
+  dropdownMenu.selectAll("option")
+    .data(teams)
+    .enter()
+    .append("option")
+    .text((team) => team.Team)
+    .attr("value", (team) => team.Team)
+    .property("selected", (team, i) => i === 0);
+  
+  dropdownMenu.on("change", () => {
+    const selectedTeam = d3.select("#selDataset").node().value;
+    Promise.all([getTeams(), getPlayerInfo()])
+      .then(([teams, playerInfo]) => {
+        updateCharts(selectedTeam, playerInfo);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   });
 }
 
-function updateCharts(team) {
-  Promise.all([getTeams(), getPlayerInfo()])
-    .then(([teams, playerInfo]) => {
-      const selectedTeam = teams.find((t) => t.Team === team);
-      updateTeamBarChart(selectedTeam, teams);
-      updatePlayerPieChart(selectedTeam, playerInfo);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+function updateCharts(team, playerInfo) {
+  updateTeamBarChart(team);
+  updatePlayerPieChart(team, playerInfo);
 }
 
-function updateTeamBarChart(team, teams) {
-  const teamNames = teams.map((team) => team.Team);
-  const apgScores = teams.map((team) => team.APG);
-  const ppgScores = teams.map((team) => team.PPG);
-  const rpgScores = teams.map((team) => team.RPG);
+function updateTeamBarChart(team, Teams) {
+  const teamNames = Teams.map((team) => team.Team);
+  const apgScores = Teams.map((team) => team.APG);
+  const ppgScores = Teams.map((team) => team.PPG);
+  const rpgScores = Teams.map((team) => team.RPG);
 
+ 
   let teamCategories = ["APG", "PPG", "RPG"];
   let teamScores = [apgScores, ppgScores, rpgScores];
 
@@ -90,8 +94,8 @@ function updateTeamBarChart(team, teams) {
   };
 
   Plotly.newPlot("teamBarChart", dataPlot, layout);
-}
 
+}
 
 function updatePlayerPieChart(team, playerInfo) {
   let filteredInfo = playerInfo.filter((info) => info.Current_team === team);
