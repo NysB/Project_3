@@ -145,19 +145,54 @@ function updateTeamLineChart(team, playerScores) {
 
 function updatePlayerPieChart(team, playerInfo) {
   let filteredInfo = playerInfo.filter((info) => info.Current_team === team);
-  
+
   let playerNames = filteredInfo.map((info) => info.Player);
   let playerAges = filteredInfo.map((info) => parseInt(info.Age));
-  
-  let dataPlot = [
-    { labels: playerNames, value: playerAges, type: "pie" }
-  ];
-  
-  let layout = { 
-    title: "Player Ages", 
+
+  let data = {
+    labels: playerNames,
+    datasets: [
+      {
+        data: playerAges,
+        backgroundColor: generateRandomColors(playerNames.length), // Generate random colors for the pie slices
+      },
+    ],
   };
-  
-  Plotly.newPlot("playerPieChart", dataPlot, layout);
+
+  function generateRandomColors(count) {
+    let colors = [];
+    for (let i = 0; i < count; i++) {
+      let color = `rgba(${getRandomValue(0, 255)}, ${getRandomValue(0, 255)}, ${getRandomValue(0, 255)}, 0.8)`;
+      colors.push(color);
+    }
+    return colors;
+  }
+
+  // Function to get a random value between min (inclusive) and max (exclusive)
+  function getRandomValue(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+
+  const canvas = document.getElementById("playerPieChart");
+
+  let chart = Chart.getChart(canvas);
+
+  if (chart) {
+    chart.data = data;
+    chart.options.title.text = "Player Ages";
+    chart.update();
+  } else {
+    chart = new Chart(canvas, {
+      type: "pie",
+      data: data,
+      options: {
+        title: {
+          display: true,
+          text: "Player Ages",
+        },
+      },
+    });
+  }
 }
 
 
