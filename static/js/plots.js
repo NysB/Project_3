@@ -73,19 +73,15 @@ function updateCharts(team, playerInfo) {
   updatePlayerPieChart(team, playerInfo);
 }
 
-function updateTeamBarChart(team,Teams) {
-    // const teamNames = Teams.map((team) => team.Team);
+function updateTeamBarChart(team, Teams) {
+  const teamNames = Teams.map((team) => team.Team);
   const apgScores = Teams.map((team) => team.APG);
   const ppgScores = Teams.map((team) => team.PPG);
   const rpgScores = Teams.map((team) => team.RPG);
 
-  console.log(apgScores); // Array of APG scores
-  console.log(ppgScores); // Array of PPG scores
-  console.log(rpgScores); // Array of RPG scores
-
-
+ 
   let teamCategories = ["APG", "PPG", "RPG"];
-  let teamScores = [Teams.APG, Teams.PPG, Teams.RPG];
+  let teamScores = [apgScores, ppgScores, rpgScores];
 
   let dataPlot = [
     { x: teamCategories, y: teamScores, type: "bar" }
@@ -98,6 +94,7 @@ function updateTeamBarChart(team,Teams) {
   };
 
   Plotly.newPlot("teamBarChart", dataPlot, layout);
+
 }
 
 function updatePlayerPieChart(team, playerInfo) {
